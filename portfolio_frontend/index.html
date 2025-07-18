@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sindhuja Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+      background-color: #111;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    section {
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      z-index: 0;
+    }
+    section h1 {
+      font-size: 3rem;
+      z-index: 1;
+    }
+    .text-box1 {
+            text-align: left;
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.1); 
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-box1 h1 {
+            font-size: 40px;
+            color: white;
+        }
+        
+        .text-box1 span {
+            color: rgb(181, 154, 243);
+        }
+        
+        .text-box1 p {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #ccc;
+        }
+        
+        .buttons {
+            margin-top: 20px;
+        }
+        
+        .buttons a {
+            text-decoration: none;
+            color: black;
+            background: rgb(131, 176, 187);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: 0.3s;
+            display: inline-block;
+        }
+        
+        .buttons a:hover {
+            background: #ad89f4;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background:  rgb(185, 164, 234);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: black;
+            font-size: 18px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: #796fb5;
+        }
+        .social-icons img{
+            height: 30px;
+            width: 30px;
+        }
+        .image-box img {
+            max-width: 350px;
+            border-radius: 50%;
+
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+    .content-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 50px;
+            padding-top: 80px;
+        }
+        
+        .text-box {
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            box-shadow: 0 0 10px rgb(118, 127, 127);
+            border-radius: 10px;
+            max-width: 50%;
+            text-align: left;
+        }
+        
+        .image-box img {
+            max-width: 350px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px  rgb(118, 127, 127);;
+        }
+        .section {
+            height: 100vh; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            flex-direction: column;
+        }
+    canvas, #particles-js, #skillsCanvas, #homeCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .bubbles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 40px;
+      background: rgba(198, 134, 207, 0.1);
+      border-radius: 50%;
+      animation: rise 20s linear infinite;
+    }
+    @keyframes rise {
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+    #projects {
+      overflow: hidden;
+    }
+
+    #projects {
+      position: relative;
+      padding: 60px 20px;
+   
+      color: white;
+      overflow: hidden;
+    }
+
+    #projects h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .projects-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 300px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color:  rgb(185, 164, 234);
+    }
+
+    .project-description {
+      font-size: 1rem;
+      color: #e0e0e0;
+    }
+    #skills {
+      position: relative;
+      padding: 80px 20px;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #skillsCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    #skills h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .skills-box {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      z-index: 1;
+      position: relative;
+      backdrop-filter: blur(6px);
+    }
+
+    .skills-title {
+      font-size: 22px;
+      margin: 20px 0 10px;
+      border-bottom: 2px solid #b18ae2;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .skill-box-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .skill-box {
+      background: linear-gradient(135deg, #c8a0f0, #d9c1ec);
+      color: #000;
+      margin: 10px;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-box:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      #skills h1 {
+        font-size: 28px;
+      }
+
+      .skills-title {
+        font-size: 18px;
+      }
+
+      .skill-box {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+    }
+    #connect {
+      position: relative;
+      padding: 80px 20px;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #rings-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    #connect h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      z-index: 1;
+      position: relative;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 40px;
+      max-width: 1000px;
+      margin: auto;
+      z-index: 1;
+      position: relative;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .left {
+      flex: 1 1 300px;
+      text-align: left;
+    }
+
+    .left h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .left p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    form {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input,
+    form textarea {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    form textarea {
+      resize: none;
+    }
+
+    form button {
+      padding: 12px;
+      background: linear-gradient(135deg, #7f758a, #c58ad7);
+      border: none;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    form button:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .left h1 {
+        font-size: 24px;
+      }
+
+      #connect h1 {
+        font-size: 30px;
+      }
+    }
+     header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #a891de;
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links li a::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #a681da;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+
+  .nav-links li a:hover {
+    color: #805ebc;
+  }
+
+  .nav-links li a:hover::after {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      display: none;
+      padding: 20px 0;
+    }
+
+    .navbar.active .nav-links {
+      display: flex;
+    }
+  }
+  </style>
+</head>
+<body>
+  <header>
+  <nav class="navbar">
+    <div class="logo">Sindhuja</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#connect">Connect</a></li>
+    </ul>
+  </nav>
+</header>
+  <!-- Sections -->
+  <section id="home">
+    <canvas id="homeCanvas"></canvas>
+     <div class="content-container">
+        <div class="text-box">
+            <h1>Hi, I'm <span style="color: rgb(185, 164, 234)">Sindhuja M</span></h1>
+            <p>A passionate web developer and tech enthusiast, creating innovative and responsive designs to bring ideas to life.</p>
+        </div>
+        <div class="image-box">
+            <img src="images/image.webp" alt="Sindhuja M">
+        </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div id="particles-js"></div>
+    <div class="text-box1">
+            <h1>About Me</h1>
+             <p>
+              I'm an <strong> aspiring software developer</strong> passionate about building impactful, real-world tech solutions.
+              Currently interning at <strong>LTIMindtree</strong>, I work on circuit design, IoT application development, and real-time monitoring systems using
+              <strong>Arduino</strong> and protocols like <strong>MQTT</strong>.
+             </p><p>Beyond my internship, I've worked on:</p>
+            <ul>
+   
+  <p><strong> Achievements & Contributions</strong></p>
+  <ul>
+    <li>Solved <strong>200+ DSA problems</strong> on <strong>GeeksforGeeks</strong> and consistently active on <strong>LeetCode</strong>.</li>
+    <li><strong>1st Place</strong> – Project Expo, <strong>Loyola-ICAM College of Engineering and Technology</strong> (Jan 2025)</li>
+    <li><strong>1st Place</strong> – Paper Expo, <strong>Adhi College of Engineering and Technology</strong> (Dec 2024)</li>
+    <li><strong>2nd Place</strong> – Paper Presentation, <strong>Velammal Institute of Technology</strong> (Feb 2025)</li>
+    <li>Participated in <strong>Code Volt '25 Hackathon</strong>, <strong>VIT Chennai</strong> (Mar 2025)</li>
+    <li>Published research: <em>“Streamlit-based Web App for Parkinson’s Detection Using ML”</em>, <strong>IRO Journal</strong> (Jan 2025)</li>
+  </ul>
+            <div class="social-icons">
+               <a href="https://github.com/sindhujaaam" target="_blank">
+    <img src="images/icons8-git-50.png" alt="GitHub">
+  </a>
+  <a href="https://www.linkedin.com/in/sindhuja-m-8b874a2b3" target="_blank">
+    <img src="images/icons8-linkedin-50.png" alt="LinkedIn">
+  </a>
+  <a href="mailto:sindhujaaam00@gmail.com">
+    <img src="images/icons8-email-50.png" alt="Email">
+  </a>
+            </div>
+        </div>  
+            
+        </div>
+  </section>
+
+  <section id="projects">
+    <div class="bubbles">
+      <div class="bubble" style="left:10%; animation-duration: 25s;"></div>
+      <div class="bubble" style="left:30%; animation-duration: 15s;"></div>
+      <div class="bubble" style="left:50%; animation-duration: 20s;"></div>
+      <div class="bubble" style="left:70%; animation-duration: 18s;"></div>
+      <div class="bubble" style="left:90%; animation-duration: 22s;"></div>
+    </div>
+     <div class="projects-container">
+
+       <h1>My Projects</h1>
+  <div class="projects-container">
+
+    <div class="project-card">
+      <div class="project-title">Retail Shop Management System</div>
+      <div class="project-description">
+        Tech: Node.js, Express.js, MongoDB, React.js, JWT, HTML, CSS, JavaScript<br>
+        • Built a full-stack inventory system with billing, stock tracking, and JWT auth.<br>
+        • Supports dynamic cart, PDF receipts, and responsive UI.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Optimizing EV Routes with AI</div>
+      <div class="project-description">
+        Tech: TensorFlow, PyTorch, Scikit-learn, LLM, React.js, Spring Boot, MySQL<br>
+        • Predicts energy-efficient routes using suspension feedback.<br>
+        • Real-time carbon-efficient path suggestions.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Healthcare Data with Blockchain</div>
+      <div class="project-description">
+        Tech: Python, TensorFlow, Ganache<br>
+        • Secure patient data via federated learning and blockchain.<br>
+        • Ensures transparency and privacy.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">LoRa-Based Gas Monitoring</div>
+      <div class="project-description">
+        Tech: C++, IoT<br>
+        • Detects methane and CO with MQ sensors.<br>
+        • Sends instant alerts for abnormal readings.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Parkinson’s Disease Prediction</div>
+      <div class="project-description">
+        Tech: JavaScript, Machine Learning<br>
+        • Predicts Parkinson’s using voice/movement data.<br>
+        • Early detection via ML models.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Currency Converter with Chatbot</div>
+      <div class="project-description">
+        Tech: JavaScript, Html, CSS<br>
+        Built using JavaScript with chatbot integration.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">AutoChime: College Bell System</div>
+      <div class="project-description">
+        Tech:Hardware-ESP32, C++, HTML, CSS<br>
+        An IoT-based automated bell system for institutions.
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-title">Medicare Hospital Website</div>
+      <div class="project-description">
+        Tech: JavaScript, Html, CSS<br>
+        A responsive hospital site offering patient services and information.
+      </div>
+    </div>
+
+  </section>
+
+  <section id="skills">
+    <canvas id="skillsCanvas"></canvas>
+    <div class="skills-box">
+            <h2 class="skills-title">Skills</h2><br>
+            <h3 class="skills-title">Programming Languages</h3>
+            <div class="skill-box-container">
+                <div class="skill-box">HTML</div>
+                <div class="skill-box">CSS</div>
+                <div class="skill-box">JavaScript</div>
+                <div class="skill-box">Java</div>
+                <div class="skill-box">Python</div>
+            </div>
+
+            <h3 class="skills-title">Database</h3>
+            <div class="skill-box-container">
+                <div class="skill-box">MySQL</div>
+            </div>
+
+            <h3 class="skills-title">Tools</h3>
+            <div class="skill-box-container">
+                <div class="skill-box">VS Code</div>
+                <div class="skill-box">IntelliJ IDEA</div>
+                <div class="skill-box">Git</div>
+            </div>
+        </div>
+  </section>
+
+  <section id="connect">
+    <canvas id="rings-bg"></canvas>
+     <div class="container">
+        <div class="left">
+            <h1>Let's Connect</h1>
+            <p>I'm always open to exciting opportunities, collaborations, and discussions.  
+               If you'd like to get in touch, feel free to reach out via email.</p>
+        </div>
+        <form id="contactForm">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script>
+    // HOME - Constellation Background
+    const homeCanvas = document.getElementById('homeCanvas');
+    const ctx = homeCanvas.getContext('2d');
+    homeCanvas.width = window.innerWidth;
+    homeCanvas.height = window.innerHeight;
+    const particlesArray = [];
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * homeCanvas.width;
+        this.y = Math.random() * homeCanvas.height;
+        this.size = 2;
+        this.dx = (Math.random() - 0.5) * 1;
+        this.dy = (Math.random() - 0.5) * 1;
+      }
+      update() {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x > homeCanvas.width || this.x < 0) this.dx *= -1;
+        if (this.y > homeCanvas.height || this.y < 0) this.dy *= -1;
+      }
+      draw() {
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function initConstellation() {
+      for (let i = 0; i < 100; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a; b < particlesArray.length; b++) {
+          let dx = particlesArray[a].x - particlesArray[b].x;
+          let dy = particlesArray[a].y - particlesArray[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animateConstellation() {
+      ctx.clearRect(0, 0, homeCanvas.width, homeCanvas.height);
+      particlesArray.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animateConstellation);
+    }
+
+    initConstellation();
+    animateConstellation();
+
+    // ABOUT - Particles.js Config
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        shape: { type: "edge" },
+        color: { value: "#ffffff" },
+        opacity: { value: 0.5 },
+        size: { value: 4, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 2, direction: "none", out_mode: "out" }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" }
+        },
+        modes: {
+          repulse: { distance: 100 }
+        }
+      },
+      retina_detect: true
+    });
+
+    // CONNECT - Rotating Rings (was PROJECTS)
+    const canvas = document.getElementById("rings-bg");
+    const ringsRenderer = new THREE.WebGLRenderer({ canvas, alpha: true });
+    const ringsScene = new THREE.Scene();
+    const ringsCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+    ringsCamera.position.z = 100;
+    const ringGroup = new THREE.Group();
+    ringsScene.add(ringGroup);
+
+    const colors = [0xff9a9e, 0xfad0c4, 0xa18cd1, 0xfbc2eb, 0x8ec5fc];
+    for (let i = 0; i < 30; i++) {
+      const radius = THREE.MathUtils.randFloat(5, 25);
+      const tube = THREE.MathUtils.randFloat(0.1, 0.5);
+      const geometry = new THREE.RingGeometry(radius, radius + tube, 64);
+      const material = new THREE.MeshBasicMaterial({
+        color: colors[Math.floor(Math.random() * colors.length)],
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.4
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.rotation.x = Math.random() * Math.PI;
+      mesh.rotation.y = Math.random() * Math.PI;
+      mesh.rotation.z = Math.random() * Math.PI;
+      mesh.userData.rotationSpeed = 0.001 + Math.random() * 0.003;
+      ringGroup.add(mesh);
+    }
+
+    function animateRings() {
+      requestAnimationFrame(animateRings);
+      ringGroup.rotation.y += 0.002;
+      ringGroup.children.forEach((ring) => {
+        ring.rotation.z += ring.userData.rotationSpeed;
+      });
+      ringsRenderer.setSize(window.innerWidth, window.innerHeight);
+      ringsCamera.aspect = window.innerWidth / window.innerHeight;
+      ringsCamera.updateProjectionMatrix();
+      ringsRenderer.render(ringsScene, ringsCamera);
+    }
+    animateRings();
+
+    // SKILLS - Starfield Background
+    const starScene = new THREE.Scene();
+    const starCamera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const starRenderer = new THREE.WebGLRenderer({ canvas: document.getElementById('skillsCanvas'), alpha: true });
+    starRenderer.setSize(window.innerWidth, window.innerHeight);
+    const starGeometry = new THREE.BufferGeometry();
+    const starCount = 5000;
+    const starVertices = [];
+    for (let i = 0; i < starCount; i++) {
+      starVertices.push((Math.random() - 0.5) * 2000);
+      starVertices.push((Math.random() - 0.5) * 2000);
+      starVertices.push((Math.random() - 0.5) * 2000);
+    }
+    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+    const starMaterial = new THREE.PointsMaterial({ color: 0xffffff });
+    const starField = new THREE.Points(starGeometry, starMaterial);
+    starScene.add(starField);
+    starCamera.position.z = 1;
+
+    function animateStarfield() {
+      requestAnimationFrame(animateStarfield);
+      starField.rotation.x += 0.0005;
+      starField.rotation.y += 0.0005;
+      starRenderer.render(starScene, starCamera);
+    }
+    animateStarfield();
+
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value
+        };
+
+        const res = await fetch('http://localhost:5000/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+
+        const data = await res.json();
+        alert(data.msg);
+        form.reset();
+    }); 
+  </script>
+</body>
+</html>
