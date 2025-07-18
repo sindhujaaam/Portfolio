@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 const nodemailer = require('nodemailer');
@@ -11,52 +10,45 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "portfolio_frontend")));
 
-// Serve static frontend
-app.use(express.static(path.join(__dirname, 'portfolio_frontend')));
-
-// Health check route
+// Serve frontend root
 app.get('/', (req, res) => {
-    res.send('✅ Contact backend is running!');
+  res.sendFile(path.join(__dirname, 'portfolio_frontend', 'index.html'));
 });
 
-// POST /contact route
+// POST: Contact form
 app.post('/contact', async (req, res) => {
-    const { name, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-    if (!name || !email || !message) {
-        return res.status(400).json({ msg: 'Please fill all fields' });
-    }
+  if (!name || !email || !message) {
+    return res.status(400).json({ msg: 'Please fill all fields' });
+  }
 
-    try {
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.MY_EMAIL,
-                pass: process.env.MY_PASSWORD,
-            },
-        });
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.MY_EMAIL,
+        pass: process.env.MY_PASSWORD,
+      },
+    });
 
-        await transporter.sendMail({
-            from: process.env.MY_EMAIL,
-            to: process.env.MY_EMAIL,
-            subject: `📬 New message from ${name} <${email}>`,
-            text: `You received a new message:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-        });
+    await transporter.sendMail({
+      from: email,
+      to: process.env.MY_EMAIL,
+      subject: `Portfolio Message from ${name}`,
+      text: message,
+    });
 
-        res.status(200).json({ msg: 'Message sent successfully!' });
-    } catch (error) {
-        console.error('❌ Mail Error:', error);
-        res.status(500).json({ msg: 'Failed to send message. Try again later.' });
-    }
+    res.status(200).json({ msg: 'Message sent successfully!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Failed to send message. Try again later.' });
+  }
 });
 
-// Wildcard route to serve frontend (SPA)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'portfolio_frontend', 'index.html'));
-});
-
-// Start server
+// Listen
 app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
