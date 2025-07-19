@@ -11,6 +11,8 @@
       box-sizing: border-box;
     }
     html, body {
+       padding: 0;
+  margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       scroll-behavior: smooth;
       background-color: #111;
@@ -232,57 +234,53 @@
         opacity: 0;
       }
     }
-    #projects {
-      overflow: hidden;
-    }
+   #projects {
+  position: relative;
+  padding: 60px 20px;
+  color: white;
+  overflow: hidden;
+}
 
-    #projects {
-      position: relative;
-      padding: 60px 20px;
-   
-      color: white;
-      overflow: hidden;
-    }
+#projects h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
 
-    #projects h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-    }
+.projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
 
-    .projects-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
+.project-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 300px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    .project-card {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 20px;
-      max-width: 300px;
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
 
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    }
+.project-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgb(185, 164, 234);
+}
 
-    .project-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color:  rgb(185, 164, 234);
-    }
-
-    .project-description {
-      font-size: 1rem;
-      color: #e0e0e0;
-    }
+.project-description {
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
     #skills {
       position: relative;
       padding: 80px 20px;
@@ -561,6 +559,55 @@
     .navbar.active .nav-links {
       display: flex;
     }
+    #connect .container {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  #connect .left,
+  #contactForm {
+    flex: 1 1 100%;
+  }
+
+  #connect .left h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  #connect .left p {
+    font-size: 1rem;
+    text-align: center;
+  }
+   #projects {
+    padding: 40px 15px;
+  }
+
+  #projects h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .projects-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .project-card {
+    max-width: 95%;
+    padding: 16px;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+  
   }
   </style>
 </head>
@@ -685,29 +732,6 @@
       </div>
     </div>
 
-    <div class="project-card">
-      <div class="project-title">Currency Converter with Chatbot</div>
-      <div class="project-description">
-        Tech: JavaScript, Html, CSS<br>
-        Built using JavaScript with chatbot integration.
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-title">AutoChime: College Bell System</div>
-      <div class="project-description">
-        Tech:Hardware-ESP32, C++, HTML, CSS<br>
-        An IoT-based automated bell system for institutions.
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-title">Medicare Hospital Website</div>
-      <div class="project-description">
-        Tech: JavaScript, Html, CSS<br>
-        A responsive hospital site offering patient services and information.
-      </div>
-    </div>
 
   </section>
 
